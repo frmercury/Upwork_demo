@@ -12,7 +12,7 @@ import static helpers.Loader.loadProperty;
 public class YahooMainPage extends BasePage {
 
     public YahooMainPage() {
-        super("Yahoo Search Page");
+        super("Yahoo Main Page");
     }
 
     private final SelenideElement yahooSearchField = $x("//input[@id = 'ybar-sbq']");

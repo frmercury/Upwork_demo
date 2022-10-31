@@ -1,11 +1,10 @@
 package ui;
 
-import org.assertj.core.api.Condition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
-import pages.bingEngine.BingMainPage;
-import pages.bingEngine.BingSearchResultsPage;
+import pages.duckDuckGoEngine.DnGSearchResultsPage;
+import pages.duckDuckGoEngine.DuckAndGoMainPage;
 import pages.yahooEngine.YahooSearchResultsPage;
 import pages.yahooEngine.YahooMainPage;
 
@@ -17,34 +16,39 @@ import static helpers.Loader.loadProperty;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 
-@Test
+
 public class SearchTest extends BaseTest {
 
     protected Logger log = LoggerFactory.getLogger(SearchTest.class);
 
     private YahooMainPage yahooMainPage = new YahooMainPage();
     private YahooSearchResultsPage yahooSearchResultsPage = new YahooSearchResultsPage();
-    private BingSearchResultsPage bingSearchResultsPage = new BingSearchResultsPage();
-    private BingMainPage bingMainPage = new BingMainPage();
+    private DnGSearchResultsPage dngSearchResultsPage = new DnGSearchResultsPage();
+    private DuckAndGoMainPage dngMainPage = new DuckAndGoMainPage();
 
+    @Test(description = "Compare and find common links for different searching engines",
+    testName = "Common links")
     public void searchTest() {
         open(loadProperty("search.engine.yahoo"));
         this.yahooMainPage
                 .enterSearchedValue()
                 .pressSearchButton();
-        List<String> yahooLinks = new ArrayList<>(yahooSearchResultsPage.getYahooSearchedLinks());
+        List<String> firstEngineLinks = new ArrayList<>(yahooSearchResultsPage.getYahooSearchedLinks());
+        log.info(String.valueOf(firstEngineLinks));
 
-        open(loadProperty("search.engine.bing"));
-        this.bingMainPage
+        open(loadProperty("search.engine.dng"));
+        this.dngMainPage
                 .enterSearchedValue()
                 .pressSearchButton();
 
-        List<String> bingLinks = new ArrayList<>(bingSearchResultsPage.getBingSearchedLinks());
+        List<String> secondEngineLinks = new ArrayList<>(dngSearchResultsPage.getBingSearchedLinks());
 
-        yahooLinks.retainAll(bingLinks);
+        log.info(String.valueOf(secondEngineLinks));
 
-        assertThat(yahooLinks.size()).isNotNull();
+        firstEngineLinks.retainAll(secondEngineLinks);
 
-        System.out.println("Common links \n" +yahooLinks);
+        assertThat(firstEngineLinks.size() > 0).isTrue();
+
+        System.out.println("Common links \n" + firstEngineLinks);
     }
 }

@@ -10,5 +10,4 @@ public abstract class BasePage {
         this.log = LogManager.getLogger(title);
         log.debug("Page is open");
     }
-
 }
