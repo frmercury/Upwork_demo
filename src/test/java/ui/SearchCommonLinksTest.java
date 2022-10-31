@@ -18,12 +18,12 @@ import static com.codeborne.selenide.Selenide.open;
 import static helpers.Loader.loadProperty;
 import static java.lang.System.getProperty;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static pages.SearchEngins.*;
+import static pages.SearchEngines.*;
 
 
-public class SearchTest extends BaseTest {
+public class SearchCommonLinksTest extends BaseTest {
 
-    protected Logger log = LoggerFactory.getLogger(SearchTest.class);
+    protected Logger log = LoggerFactory.getLogger(SearchCommonLinksTest.class);
 
     private YahooMainPage yahooMainPage = new YahooMainPage();
     private YahooSearchResultsPage yahooSearchResultsPage = new YahooSearchResultsPage();
@@ -32,9 +32,8 @@ public class SearchTest extends BaseTest {
     private BingMainPage bingMainPage = new BingMainPage();
     private BingSearchResultsPage bingSearchResultsPage = new BingSearchResultsPage();
 
-
     @Test(description = "Compare and find common links between Yahoo and DuckAndGo searching engines",
-    testName = "Common links")
+    testName = "Yahoo/DuckAndGo common links")
     public void searchYahooDnGTest() {
         open(loadProperty(YAHOO_ENGINE));
         this.yahooMainPage
@@ -45,12 +44,12 @@ public class SearchTest extends BaseTest {
 
         assertThat(firstEngineLinks.size() > 0).isTrue();
 
-        open(loadProperty(DnG_ENGINE));
+        open(loadProperty(DNG_ENGINE));
         this.dngMainPage
                 .enterSearchedValue()
                 .pressSearchButton();
 
-        List<String> secondEngineLinks = new ArrayList<>(bingSearchResultsPage.getBingSearchedLinks());
+        List<String> secondEngineLinks = new ArrayList<>(dngSearchResultsPage.getBingSearchedLinks());
 
         log.info("Second engine resulted links: " + secondEngineLinks);
 
@@ -58,12 +57,12 @@ public class SearchTest extends BaseTest {
 
         assertThat(firstEngineLinks.size() > 0).isTrue();
 
-        System.out.printf("Search results have %s links in common in %s browser: " + firstEngineLinks, firstEngineLinks.size(), getProperty("browser").toUpperCase(Locale.ROOT));
+        System.out.printf("Search results have %s links in common in %s browser: " + firstEngineLinks + "\n", firstEngineLinks.size(), getProperty("browser").toUpperCase(Locale.ROOT));
     }
 
     @Test(description = "Compare and find common links between Yahoo and Bing searching engines",
-    testName = "Common links")
-    public void searchBingGoogleTest() {
+    testName = "Yahoo/Bing common links")
+    public void searchYahooBingTest() {
         open(loadProperty(YAHOO_ENGINE));
         this.yahooMainPage
                 .enterSearchedValue()
@@ -86,6 +85,6 @@ public class SearchTest extends BaseTest {
 
         assertThat(firstEngineLinks.size() > 0).isTrue();
 
-        System.out.printf("Search results have %s links in common in %s browser: " + firstEngineLinks, firstEngineLinks.size(), getProperty("browser").toUpperCase(Locale.ROOT));
+        System.out.printf("Search results have %s links in common in %s browser: " + firstEngineLinks + "\n", firstEngineLinks.size(), getProperty("browser").toUpperCase(Locale.ROOT));
     }
 }

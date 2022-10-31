@@ -1,15 +1,11 @@
 package pages.duckDuckGoEngine;
-
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.WebElement;
 import pages.BasePage;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.$$x;
-import static com.codeborne.selenide.Selenide.$x;
 
 public class DnGSearchResultsPage extends BasePage {
     public DnGSearchResultsPage() {

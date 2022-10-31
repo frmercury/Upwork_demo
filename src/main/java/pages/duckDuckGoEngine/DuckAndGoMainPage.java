@@ -6,7 +6,6 @@ import pages.BasePage;
 
 
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverConditions.urlContaining;
 import static helpers.Loader.loadProperty;
 
 public class DuckAndGoMainPage extends BasePage {
@@ -26,6 +25,7 @@ public class DuckAndGoMainPage extends BasePage {
 
     public DnGSearchResultsPage pressSearchButton() {
         dngSearchButton.shouldBe(Condition.visible).click();
+        waitPageToLoad();
         return new DnGSearchResultsPage();
     }
 }

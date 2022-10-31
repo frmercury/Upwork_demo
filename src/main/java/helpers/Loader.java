@@ -17,9 +17,9 @@ public class Loader {
 
     private static final Logger log = LoggerFactory.getLogger("Prop loader");
 
-    final public static String ENV = getProperty("env", "dev").toLowerCase(Locale.ROOT);
+    public static final String ENV = getProperty("env", "dev").toLowerCase(Locale.ROOT);
 
-    final private static File PROPERTY_FILE = new File(getProperty("app.properties",
+    private static final File PROPERTY_FILE = new File(getProperty("app.properties",
             String.format("%s/src/test/resources/env/%s.app.properties",
                     getProperty("user.dir"), ENV)));
 
