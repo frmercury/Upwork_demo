@@ -26,7 +26,7 @@ public class Loader {
     public static String loadProperty(String propName) {
         Properties prop = new Properties();
         try {
-            log.info(String.format("Get prop %s from file %s", propName, PROPERTY_FILE.getName()));
+            log.debug(String.format("Get prop %s from file %s", propName, PROPERTY_FILE.getName()));
             prop.load(new FileInputStream(PROPERTY_FILE));
         }
         catch (IOException e){

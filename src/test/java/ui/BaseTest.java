@@ -25,8 +25,6 @@ public abstract class BaseTest {
 
     public void initProps() {
 
-        DesiredCapabilities caps = new DesiredCapabilities();
-
         //browser settings
         browser = getProperty("browser");
         timeout = parseInt(loadProperty("timeout.global"));
