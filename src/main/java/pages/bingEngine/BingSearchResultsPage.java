@@ -6,7 +6,6 @@ import org.apache.hc.core5.http.NameValuePair;
 import org.apache.hc.core5.net.URIBuilder;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import pages.BasePage;
 
 
@@ -19,7 +18,7 @@ import java.util.stream.Collectors;
 
 import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
-import static java.lang.System.getProperty;
+
 
 public class BingSearchResultsPage extends BasePage {
 

@@ -21,6 +21,7 @@ public class YahooSearchResultsPage extends BasePage {
         for (WebElement href: yahooHrefs) {
             yahooHrefList.add(href.getAttribute("href"));
         }
+
         return yahooHrefList;
     }
 

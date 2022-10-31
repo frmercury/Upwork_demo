@@ -4,6 +4,8 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import pages.BasePage;
 
+import java.time.Duration;
+
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.webdriver;
 import static com.codeborne.selenide.WebDriverConditions.urlContaining;
@@ -26,8 +28,8 @@ public class YahooMainPage extends BasePage {
 
     public YahooSearchResultsPage pressSearchButton() {
         yahooDropdownSearchButton.shouldBe(Condition.visible).click();
+        waitPageToLoad();
         webdriver().shouldHave(urlContaining("search"));
         return new YahooSearchResultsPage();
     }
-
 }
